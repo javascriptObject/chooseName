@@ -1,10 +1,63 @@
-# 学生随机点名
-
-效果如下：
-![](GIF.gif)
-
-    js代码：
-```angular2
+﻿<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>随机点名</title>
+	<style>
+		html,body,div,p{
+			margin:0;
+			padding:0;
+		}
+		body{
+			background:black;
+		}
+		.box{
+			width:710px;
+			height:600px;
+			border: 1px solid white;
+			margin:0 auto;
+			position:relative;
+		}
+		.box>.stu_name{
+			width:100px;
+			height:40px;
+			background:orangered;
+			font-size:30px;
+			line-height:40px;
+			text-align:center;
+			color:white;
+			float:left;
+			margin:20px;
+			cursor:pointer;
+		}
+		.start_choose_name{
+			width:200px;
+			height:80px;
+			font-size:50px;
+			line-height:80px;
+			text-align:center;
+			position:absolute;
+			bottom:20px;
+			left:50%;
+			margin-left:-100px;
+			color:white;
+			background:blueviolet;
+			cursor:pointer;
+		}
+		.choose{
+			background:white;
+			color:blueviolet;
+		}
+	</style>
+</head>
+<body>
+<div class='box'>
+	<p class="start_choose_name">开始点名</p>
+</div>
+<script>
 	window.onload = function () {
 		var stu = ["李卓锟","陈杰","韦雄","孙燕春","张辉","范玉伟","严波","李凯晴","崔明勇","李毅强","谭浩根","赵来荣","吴荣荣","苏祥希","陈炫林","幸文杰","黎家辉"],//配置学生姓名
 				box = document.querySelector(".box"),
@@ -48,7 +101,7 @@
 			}
 		};
 		/**
-		 * 随机的下标 params array 
+		 * 随机的下标 params array
 		 */
 		function selected(array) {
 			return Math.floor(Math.random() * array.length)
@@ -61,4 +114,6 @@
 			return 'rgb(' + r + ',' + g + ',' + b + ')'
 		}
 	};
-```    
+</script>
+</body>
+</html>
