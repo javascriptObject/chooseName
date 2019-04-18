@@ -118,8 +118,8 @@ window.onload = function () {
 							item.style.cssText = "background:white;color:blueviolet;";
 						}
 					});
-					console.info(stuArray);
 					stuArray.splice(_index,1);
+					console.info(stuArray);
 					window.localStorage.setItem("stu",JSON.stringify(stuArray));
 					if(!stuArray.length){
 						stuArray = stu
