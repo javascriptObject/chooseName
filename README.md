@@ -10,8 +10,8 @@
     js代码：
 ```angular2
 window.onload = function () {
-	var stu = ["李卓锟","韦雄","孙燕春","张辉","范玉伟","严波","李凯晴",
-				"崔明勇","李毅强","谭浩根","赵来荣","吴荣荣","苏祥希",
+	var stu = ["李国威","李卓锟","韦雄","孙燕春","张辉","范玉伟","严波","李凯晴",
+				"崔明勇","李毅强","谭浩根","赵来荣","叶旭秋","吴荣荣",
 				"陈炫林","幸文杰","黎家辉"],//配置学生姓名 注：若更改学生集合，请手动清除本地存储。。
 			ls_sty = JSON.parse(window.localStorage.getItem("stu")),
 			stuArray = ls_sty&&ls_sty.length?ls_sty:stu,
