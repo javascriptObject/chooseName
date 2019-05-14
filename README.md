@@ -6,7 +6,7 @@
 	效果如下：
 
 ![](GIF.gif)
-
+城区
     js代码：
 ```angular2
 window.onload = function () {
