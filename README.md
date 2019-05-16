@@ -5,7 +5,7 @@
 	清除方法：在浏览器控制台输入window.localStorage.setItem("stu",null）而后按下ENTER键
 	效果如下：
 
-![](GIF.gif)
+![](GIF.gif)霏霏要
 
     js代码：
 ```angular2
