@@ -6,7 +6,7 @@
 	效果如下：
 
 ![](GIF.gif)
-
+fdsf
     js代码：
 ```angular2
 window.onload = function () {
