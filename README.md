@@ -4,7 +4,7 @@
 	（关闭浏览器无影响 备注：若已配置好学生集合，进行更改时需手动清除本地缓存，
 	清除方法：在浏览器控制台输入window.localStorage.setItem("stu",null）而后按下ENTER键
 	效果如下：
-圭
+
 ![](GIF.gif)
 
     js代码：
