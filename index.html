@@ -5,132 +5,47 @@
 	<meta name="viewport"
 		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>随机点名</title>
-	<style>
-		html,body,div,p{
-			margin:0;
-			padding:0;
-		}
-		body{
-			background:black;
-		}
-		.box{
-			width:710px;
-			height:600px;
-			border: 1px solid white;
-			margin:0 auto;
-			position:relative;
-		}
-		.box>.stu_name{
-			width:100px;
-			height:40px;
-			background:orangered;
-			font-size:30px;
-			line-height:40px;
-			text-align:center;
-			color:white;
-			float:left;
-			margin:20px;
-			cursor:pointer;
-		}
-		.start_choose_name{
-			width:200px;
-			height:80px;
-			font-size:50px;
-			line-height:80px;
-			text-align:center;
-			position:absolute;
-			bottom:20px;
-			left:50%;
-			margin-left:-100px;
-			color:white;
-			background:blueviolet;
-			cursor:pointer;
-		}
-		.choose{
-			background:white;
-			color:blueviolet;
-		}
-	</style>
+	<title>随机点名系统</title>
+	<link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<div class='box'>
-	<p class="start_choose_name">开始点名</p>
-</div>
-<script>
-window.onload = function () {
-	var stu = ["李国威","李卓锟","韦雄","孙燕春","张辉","范玉伟","严波","李凯晴",
-				"崔明勇","李毅强","谭浩根","赵来荣","叶旭秋","吴荣荣",
-				"陈炫林","幸文杰","黎家晖"],
-	                        //配置学生姓名 注：若更改学生集合，请手动清除本地存储。。
-				//清除方法浏览器控制台输入window.localStorage.setItem("stu",null）而后按下ENTER键
-			ls_sty = JSON.parse(window.localStorage.getItem("stu")),
-			stuArray = ls_sty&&ls_sty.length?ls_sty:stu,
-			box = document.querySelector(".box"),
-			btn = document.querySelector(".start_choose_name"),
-			/**
-			 * 随机的下标 params array
-			 */
-			selected = (array) => {
-				return Math.floor(Math.random() * array.length)
-			},
-			/*随机的颜色封装函数*/
-			color = () => {
-				let r = Math.floor(Math.random() * 256),
-						g = Math.floor(Math.random() * 256),
-						b = Math.floor(Math.random() * 256);
-				return 'rgb(' + r + ',' + g + ',' + b + ')'
-			};
-	for (let i = 0; i < stu.length; i++){
-		let div = document.createElement("div");
-		div.setAttribute("class","stu_name");
-		div.innerText = stu[i];
-		box.appendChild(div);
-	}
-	/**
-		* 禁止选择
-		*/
-	document.onselectstart = () => {
-		return false
-	};
-	var allowClick = true,
-			colorTimes = 0,
-			timer,
-			stuNameArray = document.querySelectorAll(".box>.stu_name");
-	btn.onclick = () => {
-		if (allowClick) {
-			allowClick = false;
-			btn.innerText = "点名中";
-			timer = setInterval( () => {
-				colorTimes ++;
-				stuNameArray.forEach((item,index) => {
-					item.style.cssText = "background:"+ color() + ";color:" + color();
-				});
-				if (colorTimes >= 20) {
-					clearInterval(timer);
-					allowClick = true;
-					colorTimes = 0;
-					btn.innerText = "开始点名";
-					stuNameArray.forEach((item,index) => {
-						item.style.cssText = "background:orangered;color:white;" ;
-					});
-					let _index = selected(stuArray);
-					stuNameArray.forEach((item,index) => {
-						if(item.innerText == stuArray[_index]) {
-							item.style.cssText = "background:white;color:blueviolet;";
-						}
-					});
-					stuArray.splice(_index,1);
-					console.info(stuArray);
-					window.localStorage.setItem("stu",JSON.stringify(stuArray));
-					if(!stuArray.length){
-						stuArray = stu
-					}
-				}
-			},100)
-		}
-	};
-};
-</script>
+<div class="container">
+		<button class="sound-control" id="soundToggle" title="切换声音">🔊</button>
+		
+		<div class="header">
+			<h1>🎲 随机点名系统</h1>
+		</div>
+		
+		<div class="stats">
+			<div class="stat-item">
+				<div class="stat-value" id="totalCount">0</div>
+				<div class="stat-label">总人数</div>
+			</div>
+			<div class="stat-item">
+				<div class="stat-value" id="remainingCount">0</div>
+				<div class="stat-label">剩余人数</div>
+			</div>
+			<div class="stat-item">
+				<div class="stat-value" id="selectedCount">0</div>
+				<div class="stat-label">已点人数</div>
+			</div>
+		</div>
+		
+		<div class="file-controls">
+			<input type="file" id="fileInput" accept=".json,.txt,.csv" />
+			<button class="btn btn-small" onclick="document.getElementById('fileInput').click()">📁 导入名单</button>
+			<button class="btn btn-small" id="exportBtn">💾 导出名单</button>
+		</div>
+		
+		<div class="box" id="nameContainer">
+			<!-- 学生名单将在这里动态生成 -->
+		</div>
+		
+		<div class="controls">
+			<button class="btn btn-primary" id="startBtn">开始点名</button>
+			<button class="btn btn-danger" id="resetBtn">重置名单</button>
+		</div>
+	</div>
+<script src="js/script.js"></script>
 </body>
 </html>
